@@ -17,6 +17,7 @@ public class EchoFrame extends Frame{
 		add(lp, "login");
 		add(ep, "chat");
 		add(ep, BorderLayout.CENTER);
+
 		addWindowListener(new WindowAdapter(){
 			public void windowClosing(WindowEvent we){
 				System.exit(0);
@@ -39,12 +40,18 @@ public class EchoFrame extends Frame{
 class LoginPanel extends Panel implements ActionListener{
 	TextField tf;
 	EchoFrame efl;
+	Button connect;
 
 	public LoginPanel(EchoFrame efl){
 		this.efl = efl;
 		tf = new TextField(20);
 		tf.addActionListener(this);
 		add(tf);
+		connect = new Button("Connect");
+		connect.addActionListener(this);
+		add(connect, BorderLayout.SOUTH);
+
+
 	}
 	public void actionPerformed(ActionEvent ae){
 		efl.ep.setUserName(tf.getText());
