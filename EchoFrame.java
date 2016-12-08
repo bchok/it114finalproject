@@ -104,6 +104,7 @@ class EchoPanel extends Panel implements ActionListener, Runnable{
 				s = new Socket("127.0.0.1", 8189);
 				br = new BufferedReader(new InputStreamReader(s.getInputStream()));
 				pw = new PrintWriter(s.getOutputStream(), true);
+				pw.println(userName + " has entered the chat! \n");
 			}catch(UnknownHostException uhe){
 				System.out.println(uhe.getMessage());
 			}catch(IOException ioe){
