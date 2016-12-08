@@ -118,6 +118,7 @@ class EchoPanel extends Panel implements ActionListener, Runnable{
 			disconnect.setEnabled(true);
 		}else if(ae.getSource() == disconnect){
 			try{
+				pw.println(userName + " has left the chat! \n");
 				pw.close();
 				br.close();
 				s.close();
