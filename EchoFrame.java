@@ -130,7 +130,7 @@ class EchoPanel extends Panel implements ActionListener, Runnable{
 			disconnect.setEnabled(false);
 		}else if(ae.getSource() == tf){
 			String fromTf = tf.getText();
-			pw.println(fromTf);
+			pw.println(userName + ": " + fromTf);
 			tf.setText("");
 
 		}else{
