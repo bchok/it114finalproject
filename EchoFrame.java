@@ -4,11 +4,11 @@ import java.io.*;
 import java.net.*;
 
 public class EchoFrame extends Frame{
-
 	LoginPanel lp;
 	EchoPanel ep;
 
 	public EchoFrame(){
+
 		setLayout(new CardLayout());
 		setSize(500,500);
 		setTitle("Echo Client");
@@ -24,9 +24,6 @@ public class EchoFrame extends Frame{
 			}
 		});
 
-		//ep = new EchoPanel();
-		//add(ep, BorderLayout.CENTER);
-
 		setVisible(true);
 	}
 
@@ -37,30 +34,28 @@ public class EchoFrame extends Frame{
 	}
 }
 
+
 class LoginPanel extends Panel implements ActionListener{
 	TextField tf;
-	EchoFrame efl;
-	Button connect;
+	EchoFrame ef;
+	Button setUserName;
 
-	public LoginPanel(EchoFrame efl){
-		this.efl = efl;
+	public LoginPanel(EchoFrame ef){
+		this.ef = ef;
 		tf = new TextField(20);
-		tf.addActionListener(this);
+		setUserName = new Button("Set Username");
+		setUserName.addActionListener(this);
+		//tf.addActionListener(this);
 		add(tf);
-		connect = new Button("Connect");
-		connect.addActionListener(this);
-		add(connect, BorderLayout.SOUTH);
-
-
+		add(setUserName, BorderLayout.SOUTH);
 	}
 	public void actionPerformed(ActionEvent ae){
-		efl.ep.setUserName(tf.getText());
-		CardLayout cl = (CardLayout)(efl.getLayout());
-		cl.next(efl);
+		ef.ep.setUserName(tf.getText());
+		CardLayout cl = (CardLayout)(ef.getLayout());
+		cl.next(ef);
 		tf.setText("");
 	}
 }
-
 class EchoPanel extends Panel implements ActionListener, Runnable{
 
 	TextField tf;
@@ -71,7 +66,6 @@ class EchoPanel extends Panel implements ActionListener, Runnable{
 	PrintWriter pw;
 	Thread t;
 	String fromServer;
-	Label label1,label2;
 	String userName;
 
 
@@ -94,18 +88,10 @@ class EchoPanel extends Panel implements ActionListener, Runnable{
 		disconnect.addActionListener(this);
 		buttonPanel.add(disconnect);
 		add(buttonPanel, BorderLayout.SOUTH);
-		label1 = new Label("Chat Panel: ");
-		label2 = new Label("Name will go here");
-		add(label1);
-		add(label2);
-
-
 
 	}
-
 	public void setUserName(String userName){
 		this.userName = userName;
-		label2.setText(getUserName());
 	}
 	public String getUserName(){
 		return userName;
